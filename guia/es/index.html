@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bombando no GitHub — el Top 10 de GitHub en un reel, todos los días</title>
+<meta name="description" content="gitbombando: un reel vertical automático todos los días a las 11 h y dos carruseles a las 14 h y 18 h, con los proyectos de GitHub que más estrellas ganaron, explicados en portugués, con gráficos y el avatar de Nei.">
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/gitbombando/guia/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/gitbombando/guia/en/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/gitbombando/guia/es/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#E2A23B; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#b9791d; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:rgba(226,162,59,.12)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:760px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(226,162,59,.22),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(226,162,59,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:26px}
+  .step>div,.card{min-width:0}
+  p code,li code,td code{overflow-wrap:anywhere}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;height:auto;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top"><span class="emoji">🔥</span> Bombando no GitHub</a>
+  <span class="sep">|</span>
+  <span class="clubpro">
+    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <span class="sep">-</span>
+    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  </span>
+  <div class="links">
+    <a class="sec" href="#oque">Qué es</a>
+    <a class="sec" href="#fluxo">Cómo funciona</a>
+    <a class="sec" href="#carrosseis">Carruseles</a>
+    <a class="sec" href="#guia">Guía de uso</a>
+    <a class="sec" href="#exemplos">Ejemplos</a>
+    <a class="sec" href="#roadmap">Hoja de ruta</a>
+    <span class="lang"><a href="../">PT</a><a href="../en/">EN</a><a class="on" href="./">ES</a></span>
+    <button class="tgl" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema">🌙</button>
+    <a class="btn" href="https://github.com/inematds/gitbombando" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div>
+      <span class="chip">reel diario · Top 10 de GitHub</span>
+      <h1>Lo que está <span class="amb">en auge</span> en GitHub, en 2 minutos</h1>
+      <p class="lead">Todos los días a las 11 h se publica automáticamente un reel con los 10 proyectos que más estrellas ganaron, del #10 al #1, con un gráfico, una explicación sencilla y el avatar del presentador Nei Maldaner (INEMA). Los domingos se publica el de la semana y el día 1, el del mes. A las 14 h y 18 h se publican dos carruseles en Instagram y TikTok.</p>
+      <div class="cta">
+        <a class="btn" href="#guia">Empezar la guía</a>
+        <a class="btn ghost" href="https://github.com/inematds/gitbombando" target="_blank" rel="noopener">Ver en GitHub</a>
+      </div>
+    </div>
+    <figure><img src="../assets/banner-es.jpg" alt="Banner de Bombando no GitHub: el Top 10 de GitHub en un reel diario"></figure>
+  </div>
+</header>
+
+<section id="resumo" class="resumo"><div class="wrap">
+  <span class="chip">En resumen</span>
+  <p>gitbombando es una línea automática de producción de videos cortos. Cada mañana consulta la página de proyectos populares de GitHub, toma los 10 que más estrellas ganaron y crea un reel vertical que explica cada uno en portugués sencillo, con una tarjeta, un contador y un gráfico; el video se genera a las 6:30 h y se publica a las 11 h. A las 14 h y 18 h se publican dos carruseles de imágenes (el Top 10 de GitHub y el top de una categoría). Sirve para quienes quieren saber qué está en auge en tecnología e IA sin leer en inglés ni entender código. El video se envía automáticamente a YouTube (canal INEMA Tec, llamado lives4 en el sistema), a Instagram y TikTok @inema.tds, al bot de Telegram de Nei Maldaner (el «bot v3», que avisa cuando termina o falla) y a un tema fijo del grupo INEMA.TOOLS en Telegram; los carruseles se publican en Instagram y TikTok @inema.tds y en un tema fijado del grupo INEMA.DEV. Para ejecutarlo, se necesita la computadora de INEMA con Python, Node, Codex, Claude Code y una suscripción a HeyGen.</p>
+</div></section>
+
+<section id="oque"><div class="wrap">
+  <span class="chip">Qué es</span>
+  <h2>Un noticiero diario de GitHub, hecho por una computadora</h2>
+  <p class="sub">Combina el motor de noticiero de r7ex (que viene de eventosextremospub) con una recopilación propia de GitHub Trending.</p>
+  <figure style="margin:0 0 26px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="../assets/banner-grade-es.jpg" alt="Etapas de Bombando no GitHub: recopilación, guion, contador, gráfico, avatar y publicación" loading="lazy" style="width:100%;display:block"></figure>
+  <div class="grid g3">
+    <div class="card"><h3>🔥 Un inicio que atrapa</h3><p>El gancho empieza con el dato más impactante del día (el número del #1, una gran empresa tecnológica o un proyecto polémico) en un titular diseñado para la portada. No se permite empezar con una lista («los 10 proyectos…»).</p></div>
+    <div class="card"><h3>📊 Un gráfico para cada proyecto</h3><p>Tarjeta con la posición, la foto de su dueño, una explicación sencilla en portugués y las estrellas; debajo, el contador llega al número cuando se menciona y el gráfico muestra la curva de estrellas o el «antes × ahora».</p></div>
+    <div class="card"><h3>⚙️ Sin que nadie toque un botón</h3><p>Se genera a las 6:30 h y se publica a las 11 h. Claude prepara y revisa el guion, el avatar se crea en el estudio de HeyGen, se publica mediante lives4, las notificaciones llegan por el bot v3 y la publicación va en el mismo tema de Telegram.</p></div>
+  </div>
+</div></section>
+
+<section id="fluxo"><div class="wrap">
+  <span class="chip">Cómo funciona</span>
+  <h2>De Trending a Telegram, automáticamente</h2>
+  <p class="sub">Cada etapa guarda un archivo en la carpeta de la edición (<code>edicoes/AAAA-MM-DD-top10-dia/</code>); si alguna falla, Nei recibe «Falló» en el bot con el motivo.</p>
+  <div class="flow">
+    <span>Registro de estrellas (cada hora)</span><span class="arr">→</span>
+    <span>Recopilación de Trending (6:30 h)</span><span class="arr">→</span>
+    <span>Guion (claude -p)</span><span class="arr">→</span>
+    <span>Control</span><span class="arr">→</span>
+    <span>Avatar + tarjetas + portada</span><span class="arr">→</span>
+    <span>Edición</span><span class="arr">→</span>
+    <span>Revisión</span><span class="arr">→</span>
+    <span>lives4 · Instagram/TikTok · v3 · INEMA.TOOLS (11 h)</span>
+  </div>
+  <div class="grid g3" style="margin-top:22px">
+    <div class="card"><h3>📅 Día, semana y mes</h3><p>El temporizador ejecuta <code>auto/rodar.sh</code> a las 06:30, cuando el estudio de HeyGen está libre, y el Top 10 del día sale a las 11 h. Los domingos, después de ese, prepara el de la semana; el día 1, el del mes. Esos se publican en cuanto están listos, por lo general a primera hora de la tarde.</p></div>
+    <div class="card"><h3>⭐ Orden según las estrellas</h3><p>El Top 10 se ordena por las estrellas ganadas durante el período entre los proyectos que aparecen en Trending (el orden de la página combina otras señales).</p></div>
+    <div class="card"><h3>📖 Términos</h3><p><b>Trending</b>: página de GitHub con los proyectos populares. <b>Registro</b>: anotación cada hora de las estrellas de cada proyecto. <b>Control</b>: revisión automática que rechaza los guiones que no cumplen el formato. <b>claude -p</b>: Claude funcionando automáticamente, sin conversación. <b>Pantalla :99</b>: pantalla virtual donde se abre el navegador de HeyGen sin que se vea. <b>Metricool</b>: programador de publicaciones que publica en Instagram y TikTok.</p></div>
+    <div class="card"><h3>🧾 Revisión antes de publicar</h3><p>Un <code>claude -p</code> lee 18 cuadros del video. Si hay un defecto visible (título incorrecto, cuadro vacío, número cambiado), se detiene todo; las sugerencias también se envían a Nei.</p></div>
+  </div>
+</div></section>
+
+<section id="carrosseis"><div class="wrap">
+  <span class="chip">Carruseles · desde la versión 1.2.0</span>
+  <h2>Dos carruseles al día, además del video</h2>
+  <p class="sub">Un carrusel es una publicación con varias imágenes que deslizas hacia un lado. gitbombando crea dos al día y los publica en Instagram y TikTok @inema.tds mediante Metricool y, como álbum, en un tema fijado del grupo INEMA.DEV en Telegram.</p>
+  <div class="grid g3">
+    <div class="card"><h3>🏆 Top 10 de GitHub · 14 h</h3><p>Los mismos 10 proyectos del video del día, uno por diapositiva, empezando por el #1. Empieza a las 12:45 h y se publica a las 14 h.</p></div>
+    <div class="card"><h3>🗂️ Top de la categoría · 18 h</h3><p>Los 8 proyectos nuevos que más crecen en una categoría: lunes, agentes de IA; martes, Claude Code y MCP; miércoles, IA para video e imagen; jueves, seguridad; viernes, automatización; sábado, desarrollo web y apps; domingo, IA en tu PC. No repite un proyecto que haya salido en esa área durante las últimas 8 semanas.</p></div>
+    <div class="card"><h3>🧾 Revisión antes de publicar</h3><p>Un <code>claude -p</code> revisa el texto y el diseño de cada diapositiva. Si algo está mal (un texto cambiado, contenido para adultos), el carrusel no se publica y Nei recibe el aviso por el bot v3.</p></div>
+  </div>
+  <p class="sub" style="margin:26px 0 14px">Cada diapositiva incluye la posición, el nombre, un gancho de dos líneas, una captura del README con las estrellas ganadas, «qué es», dos beneficios, «cómo se usa» en tres pasos y el enlace al repositorio. La portada empieza con un mosaico de capturas y la suma de las estrellas.</p>
+  <div class="ex">
+    <figure><img src="../assets/carrossel-capa.jpg" alt="Portada del carrusel Top 10 de GitHub del 04/11/2026: mosaico de capturas, titular “A IA já usa seu computador” (La IA ya usa tu computadora) y +13.886 estrellas ganadas por los 10 proyectos en 24 horas" loading="lazy" width="1080" height="1350"><figcaption>Portada de la primera edición, 04/11/2026.</figcaption></figure>
+    <figure><img src="../assets/carrossel-slide.jpg" alt="Diapositiva 1 del carrusel: agent-desktop, gancho “A IA usa seus programas sozinha” (La IA usa tus programas por sí sola), captura del README con +2.463 estrellas hoy, qué es, dos beneficios, cómo se usa en tres pasos y el enlace al repositorio" loading="lazy" width="1080" height="1350"><figcaption>La diapositiva del #1: gancho, captura, qué es, beneficios, cómo se usa y enlace.</figcaption></figure>
+  </div>
+</div></section>
+
+<section id="pre"><div class="wrap">
+  <span class="chip">Requisitos previos</span>
+  <h2>Qué debe estar instalado en la computadora</h2>
+  <p class="sub">Es la computadora de INEMA, la misma que ya ejecuta los otros sistemas de video (r7ex y eventosextremospub). En otra computadora, se necesita tener todo lo que aparece abajo.</p>
+  <div class="grid g3">
+    <div class="card"><h3>El proyecto en la ubicación correcta</h3><p>Los temporizadores buscan el proyecto en <code>~/projetos/gitbombando</code>.</p><pre><span class="k">git clone https://github.com/inematds/gitbombando ~/projetos/gitbombando</span></pre></div>
+    <div class="card"><h3>Bibliotecas de Python</h3><p>Lectura del guion, tarjetas y recortes de imagen.</p><pre><span class="k">pip install pyyaml pillow numpy</span></pre></div>
+    <div class="card"><h3>GitHub CLI</h3><p>La recopilación usa la API de GitHub mediante <code>gh</code>, con una sesión iniciada.</p><pre><span class="c"># verificar</span>
+<span class="k">gh auth status</span></pre></div>
+    <div class="card"><h3>Claude Code + Codex</h3><p>Guion y revisión con <code>claude -p</code>; portada con Codex <code>image_gen</code>. Ambos con suscripción.</p><pre><span class="c"># verificar</span>
+<span class="k">claude --version && codex --version</span></pre></div>
+    <div class="card"><h3>Node + Python + ffmpeg</h3><p>Renderizado en Chrome con Playwright, edición con ffmpeg y Whisper de inemavox para sincronizar las palabras.</p><pre><span class="c"># instalar el motor y el navegador</span>
+<span class="k">cd ~/projetos/gitbombando && npm install</span>
+<span class="k">npx playwright install chromium</span></pre></div>
+    <div class="card"><h3>Estudio de HeyGen</h3><p>Perfil con sesión iniciada en <code>~/.cache/inemaccbot/perfil-heygen</code>, pantalla <code>:99</code> (stack99). El avatar se genera en el estudio (con suscripción); solo la verificación del estado y la descarga consultan la API, con la <code>HEYGEN_API_KEY</code> de <code>~/projetos/openpcbotv2/.env</code>.</p><pre><span class="c"># la pantalla :99 debe estar activa</span>
+<span class="k">systemctl --user status stack99</span></pre></div>
+    <div class="card"><h3>yt-pubx</h3><p>Publica en el canal lives4 (INEMA Tec) con título, descripción y etiquetas.</p><pre><span class="k">~/projetos/yt-pubx/yt-pubx canais | grep lives4</span></pre></div>
+    <div class="card"><h3>Proyectos relacionados</h3><p><code>~/projetos/inemavox</code> (Whisper, tiempo de cada palabra) y <code>~/projetos/openpcbotv3</code> (envío al bot v3).</p><pre><span class="k">ls ~/projetos/inemavox ~/projetos/openpcbotv3/dist</span></pre></div>
+    <div class="card"><h3>Telegram</h3><p>Sesión de <code>telegramtopicosindex</code> (cuenta de Nei) para publicar en el tema fijo de INEMA.TOOLS (vídeo) y de INEMA.DEV (carruseles).</p><pre><span class="k">ls ~/projetos/telegramtopicosindex/telegram_session.session</span></pre></div>
+    <div class="card"><h3>Metricool (Instagram + TikTok)</h3><p>El conector MCP <code>metricool-inematds</code> conectado en Claude Code: <code>claude -p</code> lo usa para programar el vídeo y los carruseles en @inema.tds.</p><pre><span class="c"># debe aparecer como conectado</span>
+<span class="k">claude mcp list | grep metricool-inematds</span></pre></div>
+  </div>
+</div></section>
+
+<section id="guia"><div class="wrap">
+  <span class="chip">Guía de uso · paso a paso</span>
+  <h2>Activar, probar y revisar</h2>
+  <p class="sub">Una vez activado, no tienes que hacer nada: el video se publica a las 11 h y los carruseles a las 14 h y 18 h. Los pasos siguientes sirven para instalar, probar y corregir.</p>
+
+  <div class="step"><div class="b">1</div><div>
+    <h3>Activar los cuatro temporizadores</h3>
+    <p>La captura horaria crea la curva de estrellas; la de las 6:30 h prepara el reel y lo publica a las 11 h; los dos temporizadores de carrusel empiezan a las 12:45 h y 16:45 h y publican a las 14 h y 18 h.</p>
+<pre><span class="k">mkdir -p ~/.config/systemd/user</span>
+<span class="k">cp auto/systemd/gitbombando* ~/.config/systemd/user/</span>
+<span class="k">systemctl --user daemon-reload</span>
+<span class="k">systemctl --user enable --now gitbombando-retrato.timer gitbombando.timer \
+  gitbombando-carrossel-top10.timer gitbombando-carrossel-area.timer</span>  <span class="c"># comprobar con: systemctl --user list-timers | grep gitbomb</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">2</div><div>
+    <h3>Ver el Top 10 sin grabar un video</h3>
+    <p>Solo recopila los datos: guarda <code>edicoes/teste/pesquisa/top10.json</code> con las estrellas, la descripción, el README y el crecimiento de cada proyecto. <code>GB_SEM_HISTORICO=1</code> evita modificar el historial real.</p>
+<pre><span class="k">GB_SEM_HISTORICO=1 python3 coleta/trending.py edicoes/teste dia</span>   <span class="c"># o semana / mes</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">3</div><div>
+    <h3>Ejecutar una edición de prueba (sin publicar)</h3>
+    <p>Ejecuta desde <code>~/projetos/gitbombando</code>. Haz todo en una carpeta de prueba, sin subir nada a YouTube, Instagram, TikTok, el bot, Telegram ni git. Usa siempre <code>ED=</code> con una carpeta nueva fuera de <code>edicoes/</code>: sin ella, la prueba usa la carpeta de la edición del día. Con <code>AVATAR_DE=</code> reutiliza un avatar ya grabado y no consume una generación de HeyGen (sin eso, graba un avatar nuevo). El registro queda en <code>rodada.log</code> y la hoja de cuadros en <code>build/folha.jpg</code>.</p>
+<pre><span class="k">ED=/tmp/teste-video AVATAR_DE=&lt;avatar.mp4&gt; \
+  SEM_YT=1 SEM_BOT=1 SEM_TG=1 SEM_METRI=1 SEM_GIT=1 GB_SEM_HISTORICO=1 auto/rodar.sh 2026-10-28 dia</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">4</div><div>
+    <h3>Publicar una edición lista</h3>
+    <p>Si el revisor la rechaza, el video no se publica y el bot avisa. Si te parece que está bien, publícala manualmente: en lives4, el bot v3 y el tema de INEMA.TOOLS.</p>
+<pre><span class="k">python3 gb.py publicar edicoes/&lt;pasta&gt;</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">5</div><div>
+    <h3>Rehacer una sola etapa</h3>
+    <p><code>gb.py</code> tiene un comando para cada etapa; cada uno lee <code>ficha.yaml</code> y <code>top10.json</code> de la carpeta.</p>
+<pre><span class="k">python3 gb.py fazer   edicoes/&lt;pasta&gt;</span>   <span class="c"># todas las etapas siguientes, de una vez</span>
+<span class="k">python3 gb.py checar  edicoes/&lt;pasta&gt;</span>   <span class="c"># puerta del guion</span>
+<span class="k">python3 gb.py imagens edicoes/&lt;pasta&gt;</span>   <span class="c"># portada, ranking, 10 tarjetas</span>
+<span class="k">python3 gb.py avatar  edicoes/&lt;pasta&gt;</span>   <span class="c"># habla con el estudio de HeyGen y espera</span>
+<span class="k">python3 gb.py cena    edicoes/&lt;pasta&gt;</span>   <span class="c"># tiempos + ritmo + cena.js</span>
+<span class="k">python3 gb.py render  edicoes/&lt;pasta&gt;</span>   <span class="c"># video.mp4</span>
+<span class="k">python3 gb.py revisar edicoes/&lt;pasta&gt;</span>   <span class="c"># hoja + revisor</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">6</div><div>
+    <h3>Dónde revisar si todo salió bien</h3>
+    <p>Cada edición queda en <code>edicoes/AAAA-MM-DD-top10-dia/</code>: <code>rodada.log</code> (todo el proceso), <code>revisao.json</code> (el informe del revisor) y <code>build/folha.jpg</code> (18 cuadros). Si algo falla, el bot v3 recibe «Falhou:» con el motivo; si el revisor la rechaza, el mensaje incluye el comando para publicarla de todos modos.</p>
+<pre><span class="k">tail -20 edicoes/$(date +%F)-top10-dia/rodada.log</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">7</div><div>
+    <h3>Saltar un día</h3>
+    <p>Una línea con la fecha salta todo ese día; con la fecha y el modo, salta solo ese período.</p>
+<pre><span class="k">echo "2026-11-02" &gt;&gt; auto/pular.txt</span>          <span class="c"># omite el día entero</span>
+<span class="k">echo "2026-11-02 semana" &gt;&gt; auto/pular.txt</span>   <span class="c"># omite solo el de la semana</span>
+<span class="k">echo "2026-11-02 carrossel" &gt;&gt; auto/pular.txt</span> <span class="c"># omite los dos carruseles</span></pre>
+  </div></div>
+
+  <div class="step"><div class="b">8</div><div>
+    <h3>Probar un carrusel sin publicarlo</h3>
+    <p>Prepara las diapositivas en una carpeta de prueba, sin enviarlas a Telegram, Metricool, el bot ni Git. Cambia <code>area</code> por <code>top10</code> para probar el Top 10 de GitHub. Las diapositivas quedan en <code>/tmp/teste/slides/</code>.</p>
+<pre><span class="k">ED=/tmp/teste SEM_TG=1 SEM_METRI=1 SEM_BOT=1 SEM_GIT=1 auto/carrossel.sh 2026-11-04 area</span></pre>
+  </div></div>
+</div></section>
+
+<section id="exemplos"><div class="wrap">
+  <span class="chip">Ejemplos</span>
+  <h2>La primera edición: Top 10 del 28/10/2026</h2>
+  <p class="sub">DeepTutor, un profesor particular de IA, quedó en el primer lugar con 2.371 estrellas en el día.</p>
+  <div class="ex">
+    <figure><img src="../assets/ex1.jpg" alt="Portada del reel con el titular del día"><figcaption>Cuadro 0: el titular diseñado en la portada, con el número en amarillo.</figcaption></figure>
+    <figure><img src="../assets/ex2.jpg" alt="Tarjeta de un proyecto con contador y gráfico"><figcaption>Un proyecto del recuento: tarjeta con la posición, el contador y el gráfico debajo, y el avatar en la esquina.</figcaption></figure>
+  </div>
+</div></section>
+
+<section id="roadmap"><div class="wrap">
+  <span class="chip">Hoja de ruta</span>
+  <h2>Lo que ya está y lo que viene</h2>
+  <p class="sub">Versión 1.2.0, 04/11/2026.</p>
+  <div class="phase"><div class="tag">Fase 1 ✓</div><div class="d"><strong>Reel diario automático</strong><span>Recopilación, guion, avatar, gráficos, revisión, YouTube, bot y Telegram, con ediciones semanales y mensuales.</span></div></div>
+  <div class="phase"><div class="tag">Fase 1b ✓</div><div class="d"><strong>Dos carruseles al día</strong><span>Top 10 de GitHub a las 14 h y top de la categoría a las 18 h, con revisión, en Instagram y TikTok @inema.tds y en INEMA.DEV (04/11/2026).</span></div></div>
+  <div class="phase"><div class="tag">Fase 2</div><div class="d"><strong>Curva real de estrellas</strong><span>Después de algunos días de registros por hora, el gráfico de cada proyecto mostrará la curva por hora (día) o por día (semana y mes).</span></div></div>
+  <div class="phase"><div class="tag">Fase 3</div><div class="d"><strong>«No sale del Top 10»</strong><span>Usar el historial para destacar quién aparece varios días seguidos y quién acaba de entrar.</span></div></div>
+</div></section>
+
+<footer>
+  <div class="wrap">
+    <div class="pill">Python + Node (Playwright)</div><div class="pill">Claude Code + Codex</div><div class="pill">Estudio de HeyGen + yt-pubx</div>
+    <p style="margin-top:18px">Bombando no GitHub · guía abierta y gratuita, versión 1.2.0, 04/11/2026 ·
+      <a href="https://github.com/inematds/gitbombando">inematds/gitbombando</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var KEY='gitbombando-theme'; // troque gitbombando pelo nome do projeto
+    var b=document.body, t=document.getElementById('themeToggle');
+    if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; }
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      localStorage.setItem(KEY, light?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+[Unit]
+Description=gitbombando — Bombando no GitHub, gera às 09:00 e publica às 11:00 (Nei: 16h em 28/10; 11h desde 04/11; gera 09:00 desde 09/11/2026)
+
+[Timer]
+OnCalendar=*-*-* 09:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
